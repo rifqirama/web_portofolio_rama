@@ -3,15 +3,25 @@
 import { motion } from "framer-motion";
 import { personalData } from "../data/config";
 import { TypeAnimation } from 'react-type-animation';
-import { Github, Linkedin, Terminal } from "lucide-react";
+import { useEffect } from "react";
 
 export default function Hero() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }, []);
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
       <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
         
         {/* KOLOM KIRI: Text */}
-        <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+        <motion.div 
+          initial={{ opacity: 0, x: -50 }} 
+          animate={{ opacity: 1, x: 0 }} 
+          transition={{ duration: 0.8 }}
+        >
           <h2 className="text-xl md:text-2xl font-semibold text-red-500 mb-2">Hello, I'm</h2>
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
             {personalData.name} <br />
@@ -31,12 +41,23 @@ export default function Hero() {
           </div>
 
           <div className="flex gap-4">
-            <a href="#projects" className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-all shadow-lg shadow-red-500/20">View Projects</a>
-            <a href="#contact" className="px-8 py-3 border border-slate-700 hover:border-red-500 hover:text-red-500 rounded-lg font-medium transition-all text-white">Contact Me</a>
+            {/* --- UPDATE: Tombol CV --- */}
+            <a 
+              href="https://drive.google.com/file/d/1_GQrFN__SPDEpame6xdh0BLeQlWXLJW1/view?usp=drive_link" // Ganti Link Ini!
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-all shadow-lg shadow-red-500/20 flex items-center gap-2"
+            >
+              📄 CV Saya
+            </a>
+            
+            <a href="#contact" className="px-8 py-3 border border-slate-700 hover:border-red-500 hover:text-red-500 rounded-lg font-medium transition-all text-white">
+              Contact Me
+            </a>
           </div>
         </motion.div>
 
-        {/* KOLOM KANAN: Terminal Mockup */}
+        {/* KOLOM KANAN: Terminal Mockup (Tetap Sama) */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
           className="hidden md:block relative"
