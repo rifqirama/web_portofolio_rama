@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { personalData } from "../data/config";
 import { TypeAnimation } from 'react-type-animation';
 import { useEffect } from "react";
+import { Github, Linkedin, Terminal, ArrowDown } from "lucide-react";
 
 export default function Hero() {
   useEffect(() => {
@@ -77,8 +78,24 @@ export default function Hero() {
             </div>
           </div>
         </motion.div>
-
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 2, duration: 1 }}
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }} // Animasi naik turun
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <a href="#about" className="text-slate-500 hover:text-red-500 transition-colors">
+            <ArrowDown size={32} />
+          </a>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
