@@ -2,62 +2,62 @@
 
 import { motion } from "framer-motion";
 import { personalData } from "../data/config";
-import { Github, Linkedin, Mail } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
+import { Github, Linkedin, Terminal } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden">
-      {/* Background Glow Effect */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-[128px] -z-10" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-[128px] -z-10" />
-
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-5xl" // <-- Layout sudah diperlebar
-      >
-        <div className="mb-4 inline-block px-4 py-1.5 border border-slate-800 rounded-full bg-slate-900/50 text-sm text-slate-400 backdrop-blur-sm">
-          🚀 Ready to contribute
-        </div>
-
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 text-white leading-tight">
-          Hi, I'm <br className="md:hidden" /> {/* Break line di HP biar rapi */}
+    <section id="home" className="min-h-screen flex items-center justify-center px-6 pt-20">
+      <div className="max-w-7xl w-full grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* KOLOM KIRI: Text */}
+        <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+          <h2 className="text-xl md:text-2xl font-semibold text-red-500 mb-2">Hello, I'm</h2>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight text-white">
+            {personalData.name} <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-purple-600">
+              Developer
+            </span>
+          </h1>
           
-          {/* ANIMASI KETIK DI SINI */}
-          <TypeAnimation
-            sequence={[
-              // Teks yang akan diketik
-              personalData.name, 
-              1000, // Tunggu 1 detik setelah selesai ngetik
-            ]}
-            wrapper="span"
-            speed={50} // Kecepatan ngetik (makin kecil makin cepat)
-            style={{ display: 'inline-block' }}
-            repeat={0} // 0 = ketik sekali lalu berhenti (tidak looping)
-            className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500"
-            cursor={true}
-          />
-        </h1>
+          <div className="text-slate-400 text-lg mb-8 max-w-lg">
+            Specializing in <span className="text-white font-semibold">
+              <TypeAnimation
+                sequence={['Fullstack Web', 2000, 'Multimedia', 2000, 'UI/UX Design', 2000]}
+                wrapper="span" speed={50} repeat={Infinity}
+              />
+            </span>
+            <br/> {personalData.description}
+          </div>
 
-        <p className="text-slate-400 text-lg md:text-2xl mb-10 leading-relaxed font-light px-4">
-          I'm a <span className="text-blue-400 font-medium">{personalData.role}</span>. <br className="hidden md:block"/>
-          {personalData.description}
-        </p>
+          <div className="flex gap-4">
+            <a href="#projects" className="px-8 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium transition-all shadow-lg shadow-red-500/20">View Projects</a>
+            <a href="#contact" className="px-8 py-3 border border-slate-700 hover:border-red-500 hover:text-red-500 rounded-lg font-medium transition-all text-white">Contact Me</a>
+          </div>
+        </motion.div>
 
-        <div className="flex gap-6 justify-center items-center">
-          <a href={personalData.socials.github} target="_blank" className="text-slate-400 hover:text-white transition-colors">
-            <Github size={32} />
-          </a>
-          <a href={personalData.socials.linkedin} target="_blank" className="text-slate-400 hover:text-blue-400 transition-colors">
-            <Linkedin size={32} />
-          </a>
-          <a href={personalData.socials.email} className="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-slate-200 transition-transform hover:scale-105 active:scale-95">
-            Let's Talk
-          </a>
-        </div>
-      </motion.div>
+        {/* KOLOM KANAN: Terminal Mockup */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.2 }}
+          className="hidden md:block relative"
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/20 to-purple-500/20 blur-3xl -z-10 rounded-full" />
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-2xl relative overflow-hidden">
+            <div className="flex gap-2 mb-4 border-b border-slate-800 pb-4">
+              <div className="w-3 h-3 rounded-full bg-red-500" />
+              <div className="w-3 h-3 rounded-full bg-yellow-500" />
+              <div className="w-3 h-3 rounded-full bg-green-500" />
+              <div className="ml-auto text-xs text-slate-500">bash</div>
+            </div>
+            <div className="font-mono text-sm space-y-2">
+              <div className="text-slate-400"><span className="text-green-400">➜</span> ~ <span className="text-yellow-400">git</span> clone portfolio-rama</div>
+              <div className="text-slate-500">Cloning into 'portfolio-rama'...</div>
+              <div className="text-white mt-2 border-l-2 border-red-500 pl-2 animate-pulse">Ready to code! 🚀</div>
+            </div>
+          </div>
+        </motion.div>
+
+      </div>
     </section>
   );
 }

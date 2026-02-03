@@ -1,11 +1,11 @@
 export const personalData = {
   name: "Rifqi Falih Ramadhan",
   role: "Fullstack Developer",
-  education: "Informatics Student",
-  description: "Building accessible, pixel-perfect, secure, and performant web applications.",
+  description: "Membangun solusi digital yang estetik dan fungsional. Fokus pada React, Next.js, dan Multimedia.",
   socials: {
     github: "https://github.com/rifqirama",
-    linkedin: "https://linkedin.com/rifqifalihramadhan",
-    email: "mailto:rifqifalihramadhan@gmail.com"
+    linkedin: "https://linkedin.com/in/rifqifalihramadhan",
+    email: "mailto:rifqifalihramadhan@gmail.com",
+    whatsapp: "https://wa.me/6285799807747"
   }
 };
